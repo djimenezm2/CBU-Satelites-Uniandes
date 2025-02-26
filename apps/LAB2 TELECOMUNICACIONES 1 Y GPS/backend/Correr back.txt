@@ -1,0 +1,8 @@
+Correr back:
+docker pull redis
+docker run --name mi-redis -d -p 6379:6379 redis
+
+pip install -r requirements.txt
+python3 -m uvicorn lab2gps.asgi:application --host 127.0.0.1 --port 8000
+
+// Debug: python3 -m uvicorn lab2gps.asgi:application --host 127.0.0.1 --port 8000 --reload --log-level debug

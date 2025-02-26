@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Título atractivo -->
+    <title>Lab GPS y Telecomunicaciones 1 | CBU Diseño de Sistemas Satelitales - Uniandes</title>
+
+    <!-- Descripción optimizada para SEO -->
+    <meta name="description" content="CBU Diseño de Sistemas Satelitales - Uniandes. Laboratorio GPS y Telecomunicaciones 1. En este laboratorio interactivo, los estudiantes utilizan módulos ESP y GTU-7 para capturar datos en tiempo real mediante GPS, transmitiéndolos vía MQTT a un dashboard web dinámico." />
+
+    <!-- Palabras clave (opcional) -->
+    <meta name="keywords" content="CBU, Diseño, Sistemas, Satelitales, GPS, telecomunicaciones, ESP, GTU-7, MQTT, dashboard, geolocalización, Uniandes, Universidad de los Andes, sistemas satelitales, laboratorio" />
+
+    <!-- Preload dinámico de imagen según el parámetro "map" -->
+    <script>
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var mapType = params.get('map') || 'arcgis';
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        if (mapType === 'google') {
+          link.href = "https://mt3.google.com/vt/lyrs=s&x=38569&y=63858&z=17";
+        } else if (mapType === 'osm') {
+          link.href = "https://b.tile.openstreetmap.org/17/38569/63858.png";
+        } else { // arcgis u otro valor por defecto
+          link.href = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/63858/38569";
+        }
+        document.head.appendChild(link);
+      })();
+    </script>
+
+    <!-- Preconnects y dns-prefetch -->
+    <link rel="preconnect" href="https://data.org" crossorigin>
+    <link rel="dns-prefetch" href="https://data.org">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
+    <link rel="dns-prefetch" href="https://a.tile.openstreetmap.org">
+    <link rel="preconnect" href="https://server.arcgisonline.com" crossorigin>
+    <link rel="dns-prefetch" href="https://server.arcgisonline.com">
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  </head>
+  <body>
+    <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

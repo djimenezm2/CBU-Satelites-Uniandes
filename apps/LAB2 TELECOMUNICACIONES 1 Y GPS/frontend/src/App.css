@@ -1,0 +1,417 @@
+/* Reset global para botones */
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* Estilos globales para html y body */
+html, body {
+  height: calc(var(--vh, 1vh) * 100);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Variables para colores y tipografías */
+:root {
+  --color-fondo: #f5f5f5;
+  --color-borde: #ddd;
+  --color-principal: #333;
+  --color-hover: #d6d6d6;
+  --fuente-base: 'Arial', sans-serif;
+
+  /* Variables para ajustes de contraste */
+  --color-reset-bg: #222222;
+  --color-reset-hover: #111111;
+  --color-reset-text: #ffffff;
+  --color-close-bg: #b71c1c;
+  --color-close-bg-hover: #c62828;
+  --color-modal-success-bg: #1b5e20;
+  --color-modal-success-hover: #155d17;
+  --color-modal-error-bg: #b71c1c;
+  --color-modal-error-hover: #a31616;
+  --color-footer-text: #444;
+}
+
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  height: calc(var(--vh, 1vh) * 100);
+  font-family: var(--fuente-base);
+}
+
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: var(--color-fondo);
+  padding: 20px;
+  border-right: 1px solid var(--color-borde);
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+/* Contenedor para el contenido dinámico (device card o placeholder) */
+.sidebar-content {
+  flex: 1;
+}
+
+/* Map wrapper */
+.map-wrapper {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  position: relative;
+}
+
+/* Botón para abrir el sidebar */
+.open-sidebar-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1500;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  background-color: white;
+  color: var(--color-principal);
+  border: 1px solid #ccc;
+  border-radius: 20%;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  line-height: 1;
+  font-family: 'Arial', sans-serif;
+}
+
+.open-sidebar-button:hover {
+  background-color: var(--color-hover);
+}
+
+.open-icon {
+  display: inline-block;
+}
+
+/* Card de dispositivo */
+.device-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Botón para cerrar sidebar */
+.close-sidebar-button {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: var(--color-principal);
+}
+
+.close-sidebar-button:hover {
+  color: red;
+}
+
+/* Botón "Cerrar" en card */
+.close-device-info-button {
+  background-color: var(--color-close-bg);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.close-device-info-button:hover {
+  background-color: var(--color-close-bg-hover);
+}
+
+/* Botón Resetear aplicación */
+.reset-button {
+  background-color: var(--color-reset-bg);
+  color: var(--color-reset-text);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: var(--color-reset-hover);
+}
+
+/* Modal (para reset y mensajes) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button:first-child {
+  background-color: var(--color-modal-success-bg);
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: var(--color-modal-success-hover);
+}
+
+.modal-buttons button:last-child {
+  background-color: var(--color-modal-error-bg);
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: var(--color-modal-error-hover);
+}
+
+/* Footer del sidebar */
+.sidebar-bottom {
+  margin-top: 20px;
+  font-size: 0.7rem;
+  color: var(--color-footer-text);
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-borde);
+}
+
+.sidebar-footer a {
+  color: var(--color-footer-text);
+  text-decoration: none;
+}
+
+.sidebar-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-image {
+  width: 120px;
+  height: 36px;
+  max-width: 120px;
+  display: block;
+  margin: 10px auto 0;
+}
+
+/* Nuevas clases para el selector de capas (botón más grande) */
+.layer-selector-button {
+  position: absolute;
+  bottom: 95px;
+  right: 10px;
+  z-index: 1500;
+  background-color: white;
+  border-radius: 3px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.layer-selector-button:hover {
+  background-color: #e2e2e2;
+}
+
+.layer-selector-button img {
+  width: 25px;
+  height: 25px;
+}
+
+.layer-selector-container {
+  position: absolute;
+  bottom: 132px;
+  right: 10px;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  border: 2px solid #b1b0b0;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1500;
+
+  /* Propiedades para centrar verticalmente */
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-selector-container button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 2px 8px;
+  margin: 2px auto 4px auto; /* Centrado horizontal */
+  text-align: center; /* Centra el contenido del botón */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-principal); /* Fuerza el color deseado */
+  outline: none;
+}
+
+.layer-selector-container button:not(:last-child) {
+  border-bottom: 2px solid var(--color-borde);
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80%;
+    padding: 15px;
+  }
+  .open-sidebar-button {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+  .open-sidebar-button:hover {
+    background-color: white;
+  }
+  .open-icon {
+    transform: translateY(-3px);
+  }
+  .close-sidebar-button:hover {
+    color: white;
+  }
+  .modal-content {
+    width: 95%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .modal-content h3 {
+    font-size: 1.2rem;
+  }
+  .modal-content input {
+    padding: 8px;
+    font-size: 1rem;
+  }
+  .modal-buttons button {
+    padding: 8px;
+    font-size: 0.9rem;
+    margin: 0 3px;
+  }
+
+  .layer-selector-button {
+    bottom: 100px;
+    right: 12px;
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    width: 50px !important;      /* Aumenta el ancho */
+    height: 50px !important;     /* Aumenta el alto */
+    font-size: 1.5rem !important; /* Ajusta el tamaño de la fuente */
+    line-height: 50px !important; /* Centra el contenido verticalmente */
+  }
+
+  .layer-selector-button {
+    right: 10px;
+    width: 54px;
+    height: 54px;
+    bottom: 135px;
+    border: 2px solid #b1b0b0;
+    border-radius: 4px;
+  }
+
+  .layer-selector-container {
+    bottom: 190px;
+    right: 10px;
+    width: 80px;
+    height: 100px;
+  }
+
+  .layer-selector-container button {
+    padding: 4px 9px;
+    font-size: 1.1rem;
+  }
+
+  .layer-selector-button img {
+    width: 30px;
+    height: 30px;
+  }
+}
